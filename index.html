@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Phantom Studio</title>
+<meta name="description" content="Fast, cheap help for students: resumes, hackathon decks, portfolio sites and code fixes. Pay by UPI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Public+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f3ec;--ink:#16140f;--muted:#5d584c;--card:#fffdf8;--line:#e2dccd;--accent:#d9622b;--accent-ink:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#121110;--ink:#f1ede4;--muted:#a59f92;--card:#1b1a18;--line:#2e2c28;--accent:#f07a3f;--accent-ink:#121110}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 "Public Sans",system-ui,sans-serif}
+.wrap{max-width:880px;margin:0 auto;padding:40px 16px 64px}
+h1,h2,h3{font-family:"Bricolage Grotesque",sans-serif;line-height:1.15}
+.brand{display:block;margin-bottom:48px;font:800 18px/1 "Bricolage Grotesque";color:var(--ink)}
+h1{font-size:clamp(32px,6vw,52px);max-width:16ch}
+.lead{color:var(--muted);font-size:18px;max-width:52ch;margin-top:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:0 0 36px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:8px}
+.card h3{font-size:19px}
+.price{font:700 26px "Bricolage Grotesque";color:var(--accent)}
+.card p{color:var(--muted);font-size:14.5px;flex:1}
+.eta{font-size:13px;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px}
+.pay{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.pay img{width:180px;height:180px;border-radius:10px;background:#fff;padding:6px}
+.pay ol{padding-left:20px;color:var(--muted)}
+.pay li{margin:6px 0}
+.pay b{color:var(--ink)}
+.btn{display:inline-block;margin-top:12px;background:var(--accent);color:var(--accent-ink);font:600 15px "Bricolage Grotesque";padding:12px 18px;border-radius:10px;text-decoration:none}
+code{font-size:14px;background:var(--bg);padding:2px 6px;border-radius:6px;word-break:break-all}
+h2{font-size:26px;margin:44px 0 14px}
+.faq p{color:var(--muted);margin-bottom:12px}
+.faq b{color:var(--ink)}
+footer{margin-top:48px;color:var(--muted);font-size:13px}
+@media (max-width:560px){.pay{grid-template-columns:1fr;justify-items:center;text-align:left}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><span class="brand">Phantom Studio</span></header>
+  <h1>Student work, done fast and cheap.</h1>
+  <p class="lead">Resumes, hackathon decks, portfolio sites and code fixes. Small prices, quick delivery, one free revision. Pay by UPI.</p>
+
+  <h2>What we do</h2>
+  <div class="grid">
+    <div class="card"><h3>Resume rewrite</h3><div class="price">₹49</div><p>Send your current resume and the role you're targeting. You get an ATS-friendly one-page rewrite with stronger bullet points.</p><div class="eta">Delivered in about 2 hours</div></div>
+    <div class="card"><h3>Hackathon idea deck</h3><div class="price">₹149</div><p>Send your idea and the problem statement. You get a 6–8 slide submission deck covering problem, solution, architecture, feasibility and impact.</p><div class="eta">Delivered in about 4 hours</div></div>
+    <div class="card"><h3>Code bug fix</h3><div class="price">₹99+</div><p>Python, JS/React, Node, Java or C. Send the error and the repo or files. You get a fix and an explanation. You'll get a quote first if it's bigger.</p><div class="eta">Usually the same day</div></div>
+    <div class="card"><h3>Portfolio website</h3><div class="price">₹299</div><p>A responsive one-page personal site with your projects and skills, ready to host free on GitHub Pages.</p><div class="eta">Delivered within 24 hours</div></div>
+  </div>
+
+  <div class="pay">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAAFoAQAAAABSnlx4AAADFElEQVR4nO1bia7bMAyzjP3/L3OQSDkp0mFLagx2n9Qjh4VCYAWakh1Du2H9jnMr76sVJv8XkwacTtAQB57yrk7ivP6dq93D5Jfj6CcWl/CPxccPeS89Cu8Z+Y0AVVkM3dTAMea5X3jPyO80ZTH0bTCYfw2Hyu839jwHzfzdzJmDSOfV57/9d+s/J78xLmEIzJ1ChHvwOFaLu++vT9qfX7Ti78/xtiO3hySBJ/mJxp/+di/vqw19DUrvxrc0ySHEY7wQnMDfGPSsmREi7nPOhyKvjH1jt3PQHEvXJkMSGkQ0PhSMoqKz8vtqDzAx0QqCtw2O/1FxhhLnZeE9pb4E68e4bCTsrCkPh+LvSfrEQmRH1+RFjOQoKbz4e2I9D4f7NGlC8AfadIh/ovhkij4xIkqE4bcFt4/5DX/7sfC+2gNMMPpUzRPbJ8e4FbKFJEM+L7yn6ME2eLy1FwUYE6WNV+H9xu7noIlA3JAJnRpQsoV92crvqz3EBM1ldwsW4QqPdLfk4ie//U/Wf4o3InVHjwqBs8+eFCh2KuuXintbb3PAXZ8EqBa5HTmtJqEvPZBx1op7R2/DabJUihspnITCo3h8nbj7vt6WxQ2BNgpy192cJJO9K78n/TvwF8t5owAMORgUTiEIRDm0Vp5s6d3YGMzWFLLzmpt/dK4dEuvE3bfun5j0R3Zh1cRSo1Yl/lJx9437J6Z5MzVgOwAW2DVfzpwvMfibKw7RLBT+Ku5VC62TJ31Tb5PYS90H5nake0pEN0rFdeLum3pb6uvTAjGY4cf46I2vE3ff2duCUKS9m3ZW8UMdmIuZi8W9rTfUJMzWIPVfVPgcYudqubi/Yn8VYjWTHdiEXw3DdeLuX/J8Q2Odk13Y014rv7NO3H1Tb8tyhuncaMcjDrlujMXi7jvXl3aUORgr8lrr4UKyerPrxN2/4PmGluvwpm54yvIhCdeJu3/D8yQ2JklxjNJe6mSluPv+zzeA7W47Nl3lxpSxiLxO3H1jvI2n3jhpYxuhWoUvqnChuPum3lbPcy/87/Tyvtg9TH4DS6fIVkefnlkAAAAASUVORK5CYII=" alt="UPI QR code for Phantom Studio">
+    <div>
+      <h2 style="margin:0 0 8px">How to order</h2>
+      <ol>
+        <li>Email <b>phantomstudio.in@proton.me</b> with what you need. You get a confirmation and a final price.</li>
+        <li>Pay by UPI to <code>nandakishor2107@okicici</code>, or scan the QR code.</li>
+        <li>Reply with your payment screenshot. Work starts right away.</li>
+      </ol>
+      <a class="btn" href="upi://pay?pa=nandakishor2107@okicici&pn=Phantom%20Studio&cu=INR&tn=Phantom%20Studio%20order">Pay with a UPI app</a>
+    </div>
+  </div>
+
+  <h2>Questions</h2>
+  <div class="faq">
+    <p><b>Who's behind this?</b> A small student-run studio that uses AI tools to work fast. Every delivery is checked before it goes out.</p>
+    <p><b>What if I don't like it?</b> One free revision is included. If we can't deliver, you get a full refund.</p>
+    <p><b>Is this cheating?</b> We won't take graded exams or tests for you. Decks, resumes, sites and debugging help are fine.</p>
+  </div>
+
+  <footer>Phantom Studio · UPI payments only · Not affiliated with any crypto wallet or app called Phantom.</footer>
+</div>
+</body>
+</html>

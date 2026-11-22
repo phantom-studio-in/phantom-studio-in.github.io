@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free ATS Keyword Checker</title>
+<meta name="description" content="Paste your resume and a job description to see your keyword match score and which keywords are missing. Free, private, and runs in your browser.">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f3ec;--ink:#16140f;--muted:#5d584c;--card:#fffdf8;--line:#e2dccd;--accent:#d9622b;--accent-ink:#fff;--good:#2f7a4d;--bad:#b23a2a}
+@media (prefers-color-scheme:dark){:root{--bg:#121110;--ink:#f1ede4;--muted:#a59f92;--card:#1b1a18;--line:#2e2c28;--accent:#f07a3f;--accent-ink:#121110;--good:#6cc08f;--bad:#f0866f}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 "Public Sans",system-ui,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:32px 16px 64px}
+a{color:var(--accent)}
+.brand{font:800 18px "Bricolage Grotesque";color:var(--ink);text-decoration:none}
+h1{font:800 clamp(30px,5vw,46px)/1.1 "Bricolage Grotesque";margin:36px 0 10px}
+h2{font:700 22px "Bricolage Grotesque";margin-bottom:10px}
+.lead{color:var(--muted);max-width:60ch}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0 14px}
+label{font-weight:600;font-size:14px;display:block;margin-bottom:6px}
+textarea{width:100%;min-height:260px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);font:14px/1.5 "Public Sans",sans-serif;resize:vertical}
+button{background:var(--accent);color:var(--accent-ink);border:0;border-radius:10px;padding:13px 22px;font:700 16px "Bricolage Grotesque";cursor:pointer}
+.out{display:none;margin-top:26px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.score{font:800 54px/1 "Bricolage Grotesque"}
+.bar{height:10px;background:var(--line);border-radius:6px;overflow:hidden;margin:12px 0 18px}
+.bar i{display:block;height:100%;background:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 18px}
+.chip{font-size:13.5px;padding:4px 10px;border-radius:999px;border:1px solid var(--line)}
+.miss{color:var(--bad);border-color:currentColor}
+.hit{color:var(--good);border-color:currentColor}
+.tips{color:var(--muted);padding-left:20px}
+.tips li{margin:4px 0}
+.cta{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+.box{border:1px dashed var(--line);border-radius:12px;padding:16px}
+.box p{color:var(--muted);font-size:14.5px;margin:6px 0 12px}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-ink);text-decoration:none;font:700 15px "Bricolage Grotesque";padding:10px 16px;border-radius:10px}
+.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+code{font-size:13.5px;word-break:break-all}
+footer{margin-top:40px;color:var(--muted);font-size:13px}
+@media (max-width:700px){.cols,.cta{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><a class="brand" href="./">Phantom Studio</a></header>
+<h1>Free ATS keyword checker</h1>
+<p class="lead">Paste your resume and the job description. See how well your resume matches the job's keywords and which important ones are missing. Everything runs in your browser, and nothing is uploaded or stored.</p>
+
+<div class="cols">
+  <div><label for="jd">Job description</label><textarea id="jd" placeholder="Paste the full job description here…"></textarea></div>
+  <div><label for="cv">Your resume (plain text)</label><textarea id="cv" placeholder="Paste your resume text here: open your PDF, select all, copy…"></textarea></div>
+</div>
+<button id="go">Check my match</button>
+
+<section class="out" id="out" aria-live="polite">
+  <h2>Keyword match</h2>
+  <div class="score" id="score">0%</div>
+  <div class="bar"><i id="bar" style="width:0"></i></div>
+  <h2>Missing keywords <small style="font:500 14px 'Public Sans';color:var(--muted)">(most important first)</small></h2>
+  <div class="chips" id="miss"></div>
+  <h2>Already covered</h2>
+  <div class="chips" id="hit"></div>
+  <h2>What to do</h2>
+  <ul class="tips" id="tips"></ul>
+  <div class="cta">
+    <div class="box"><strong>Want it fixed for you?</strong><p>We'll rewrite your resume for this exact job: ATS-friendly, one page, stronger bullet points. Delivered in about 2 hours.</p><a class="btn" href="./#order">Resume rewrite: ₹49</a></div>
+    <div class="box"><strong>Was this useful?</strong><p>The tool is free. If it helped, a ₹10 tip keeps it running.</p><a class="btn ghost" href="upi://pay?pa=nandakishor2107@okicici&pn=Phantom%20Studio&am=10&cu=INR&tn=ATS%20checker%20tip">Tip ₹10 by UPI</a><p style="margin:8px 0 0;font-size:13px">UPI ID: <code>nandakishor2107@okicici</code></p></div>
+  </div>
+</section>
+<footer>Made by <a href="./">Phantom Studio</a>. Keyword matching is a rough guide: real ATS systems vary, so always tailor your resume to the role.</footer>
+</div>
+<script>
+const STOP=new Set("a about above after again against all also am an and any are as at be because been before being below between both but by can could did do does doing down during each etc few for from further had has have having he her here hers him his how i if in into is it its itself just me more most my no nor not now of off on once only or other our ours out over own per same she should so some such than that the their theirs them then there these they this those through to too under until up us very was we were what when where which while who whom why will with would you your yours able across ability including within strong good great excellent work working job role team teams candidate candidates company looking join ideal year years plus must preferred required requirements responsibilities responsible experience experienced knowledge understanding skills skill using use new well based like etc e.g i.e will may help make ensure across opportunity apply who".split(/\s+/));
+const KEEP=/^(c|r|go|ai|ml|ui|ux|qa|bi|ci|cd|os|db|js|ts|io|ios|aws|gcp|sql|api|nlp|llm|etl|erp|crm|seo|sap|git|php|css|vue|c\+\+|c#|\.net|node\.js|next\.js|react\.js)$/;
+function toks(t){return (t.toLowerCase().replace(/[^a-z0-9+#.\- ]+/g,' ').match(/[a-z0-9+#.\-]+/g)||[]).map(w=>w.replace(/^[.\-]+|[.\-]+$/g,'')).filter(w=>w&&(KEEP.test(w)||(w.length>2&&!STOP.has(w)&&!/^\d+$/.test(w))));}
+function grams(arr){const g=[];for(let i=0;i<arr.length-1;i++){g.push(arr[i]+' '+arr[i+1]);}return g;}
+function count(list){const m=new Map();list.forEach(x=>m.set(x,(m.get(x)||0)+1));return m;}
+document.getElementById('go').onclick=()=>{
+  const jd=document.getElementById('jd').value, cv=document.getElementById('cv').value;
+  if(jd.trim().length<40||cv.trim().length<40){alert('Paste both the job description and your resume first.');return;}
+  const jt=toks(jd), cvText=' '+toks(cv).join(' ')+' ';
+  const raw=(jd.toLowerCase().replace(/[^a-z0-9+#.\- ]+/g,' ').match(/[a-z0-9+#.\-]+/g)||[]).map(w=>w.replace(/^[.\-]+|[.\-]+$/g,''));
+  const ok=w=>w&&(KEEP.test(w)||(w.length>2&&!STOP.has(w)&&!/^\d+$/.test(w)));
+  const bl=[];for(let i=0;i<raw.length-1;i++){if(ok(raw[i])&&ok(raw[i+1]))bl.push(raw[i]+' '+raw[i+1]);}
+  const uni=count(jt), bi=count(bl);
+  let cands=[];
+  bi.forEach((n,k)=>{if(n>=2)cands.push([k,n*2.5]);});
+  uni.forEach((n,k)=>{cands.push([k,n+(KEEP.test(k)?2:0)]);});
+  cands.sort((a,b)=>b[1]-a[1]);
+  const picked=[];
+  for(const [k] of cands){
+    if(picked.length>=30)break;
+    if(picked.includes(k))continue;
+    if(!k.includes(' ')){const inside=picked.filter(p=>p.includes(' ')&&p.split(' ').includes(k));if(inside.length&&inside.every(p=>bi.get(p)>=uni.get(k)))continue;}
+    picked.push(k);
+  }
+  const has=k=>(k.length>=5&&!k.includes(' ')&&cvText.includes(' '+k))||cvText.includes(' '+k+' ')||(k.endsWith('s')&&cvText.includes(' '+k.slice(0,-1)+' '))||cvText.includes(' '+k+'s ');
+  const hit=picked.filter(has), miss=picked.filter(k=>!has(k));
+  const pct=Math.round(100*hit.length/Math.max(1,picked.length));
+  document.getElementById('score').textContent=pct+'%';
+  document.getElementById('bar').style.width=pct+'%';
+  const chip=(k,c)=>`<span class="chip ${c}">${k.replace(/</g,'&lt;')}</span>`;
+  document.getElementById('miss').innerHTML=miss.map(k=>chip(k,'miss')).join('')||'<span class="chip hit">None — nice!</span>';
+  document.getElementById('hit').innerHTML=hit.map(k=>chip(k,'hit')).join('')||'—';
+  const tips=[];
+  if(pct<50)tips.push('Your match is low. Most ATS filters rank resumes below about 60% lower, so add the missing keywords you actually have experience with.');
+  else if(pct<75)tips.push('Decent match. Work the top missing keywords into your skills section and project bullet points.');
+  else tips.push('Strong match. Now make sure each bullet point shows a result (numbers, impact), not just a list of tools.');
+  if(miss.length)tips.push('Use the exact wording from the job, e.g. "'+miss.slice(0,3).join('", "')+'". ATS matching is often literal.');
+  tips.push('Keep the layout simple: one column, standard headings (Experience, Projects, Skills, Education), no tables or images.');
+  tips.push('Never add keywords you can\'t back up in an interview.');
+  document.getElementById('tips').innerHTML=tips.map(t=>'<li>'+t+'</li>').join('');
+  const o=document.getElementById('out');o.style.display='block';o.scrollIntoView({behavior:'smooth'});
+};
+</script>
+</body>
+</html>
